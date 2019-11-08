@@ -8,7 +8,7 @@ with open(filename) as f:
 
     highs = []
     for row in reader:
-        highs.append(row[1])
+        high = int(row[1])
+        highs.append(high)
 
     print(highs)
-
