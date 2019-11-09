@@ -90,9 +90,9 @@ idx_week = dates.index('2017-12-11')
 line_chart_week = draw_line(weeks[:idx_week], close[:idx_week], '收盘价周日均值（￥）', '周日均值')
 line_chart_week
 
-# idx_week = dates.index('2017-12-11')
-# wd = ['monday', 'Tuesday', 'wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-# weekdays_int = [wd.index(w) + 1 for w in weekdays[1:idx_week]]
-# line_chart_weekday = draw_line(weekdays_int, close[1:idx_week], '收盘价星期均值（￥）', '星期均值')
-# line_chart_weekday.x_labels = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-# line_chart_weekday.render_to_file('收盘价星期均值（￥）'.svg)
+idx_week = dates.index('2017-12-11')
+wd = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+weekdays_int = [wd.index(w) + 1 for w in weekdays[1:idx_week]]
+line_chart_weekday = draw_line(weekdays_int, close[1:idx_week], '收盘价星期均值（￥）', '星期均值')
+line_chart_weekday.x_labels = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+line_chart_weekday.render_to_file('收盘价星期均值（￥）.svg')
