@@ -2,6 +2,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from urllib.request import urlopen
+from itertools import groupby
 import json
 import pygal
 import math
@@ -66,3 +67,25 @@ close_log = [math.log10(_) for _ in close]
 line_chart.add('log收盘价', close_log)
 line_chart.render_to_file('收盘价对数变换折线图（￥）.svg')
 
+
+def draw_line(x_date, y_date, title, y_legend):
+    xy_map = []
+    for x, y in groupby(sorted(zip(x_date, y_date)), key=lambda _: _[0]):
+        y_list = [v for _, v in y]
+        xy_map.append([x, sum(y_list) / len(y_list)])
+    x_uniqe, y_mean = [*zip(*xy_map)]
+    line_chart = pygal.Line()
+    line_chart.title = title
+    line_chart.x_labels = x_uniqe
+    line_chart.add(y_legend, y_mean)
+    line_chart.render_to_file(title+'.svg')
+    return line_chart
+
+
+idx_month = dates.index('2017-12-01')
+line_chart_month = draw_line(months[:idx_month], close[:idx_month], '收盘价月日均值（￥）', '月日均值')
+line_chart_month
+
+# idx_week = dates.index('2017-12-01')
+# line_chart_week = draw_line(months[:idx_month], close[:idx_month], '收盘价周日均值（￥）', '周日均值')
+# line_chart_week
