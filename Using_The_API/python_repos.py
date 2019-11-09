@@ -1,3 +1,8 @@
+'''在文件开头加上这个，先将默认的字符编码修改为'utf-8'.'''
+# import sys
+# reload(sys)
+# sys.setdefaultencoding('utf-8') 
+
 import requests
 import pygal
 from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS
@@ -21,6 +26,7 @@ for repo_dict in repo_dicts:
     plot_dict = {
         'value': repo_dict['stargazers_count'],
         'label': str(repo_dict['description']),
+        'xlink': repo_dict['html_url'], 
     }
     plot_dicts.append(plot_dict)
 
