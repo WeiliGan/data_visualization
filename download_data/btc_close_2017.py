@@ -86,6 +86,6 @@ idx_month = dates.index('2017-12-01')
 line_chart_month = draw_line(months[:idx_month], close[:idx_month], '收盘价月日均值（￥）', '月日均值')
 line_chart_month
 
-# idx_week = dates.index('2017-12-01')
-# line_chart_week = draw_line(months[:idx_month], close[:idx_month], '收盘价周日均值（￥）', '周日均值')
-# line_chart_week
+idx_week = dates.index('2017-12-01')
+line_chart_week = draw_line(months[:idx_month], close[:idx_month], '收盘价周日均值（￥）', '周日均值')
+line_chart_week
