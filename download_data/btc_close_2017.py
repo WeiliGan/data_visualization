@@ -4,6 +4,7 @@ from __future__ import (absolute_import, division, print_function,
 from urllib.request import urlopen
 import json
 import pygal
+import math
 
 json_url = 'https://raw.githubusercontent.com/muxuezi/btc/master/btc_close_2017.json'
 response = urlopen(json_url)
@@ -54,3 +55,14 @@ N = 20
 line_chart.x_labels_major = dates[::N]
 line_chart.add('收盘价', close)
 line_chart.render_to_file('收盘价折线图 (￥).svg')
+
+line_chart = pygal.Line(x_rotation=20, show_minor_x_label=False)
+line_chart.title = '收盘价对数变换（￥）'
+line_chart.x_labels = dates
+# x坐标轴每隔二十天显示一次
+N = 20
+line_chart.x_labels_major = dates[::N]
+close_log = [math.log10(_) for _ in close]
+line_chart.add('log收盘价', close_log)
+line_chart.render_to_file('收盘价对数变换折线图（￥）.svg')
+
