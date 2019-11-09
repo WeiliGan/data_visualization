@@ -24,9 +24,9 @@ with open(filename) as f:
 # 打印每一天信息
 for btc_dict in btc_date:
     date = btc_dict['date']
-    month = btc_dict['month']
-    week = btc_dict['week']
+    month = int(btc_dict['month'])
+    week = int(btc_dict['week'])
     weekday = btc_dict['weekday']
-    close = btc_dict['close']
+    close = int(float(btc_dict['close']))
     print("{} is month {} week {}, {}, the close price is {} RMB".format(
         date, month, week, weekday, close))
